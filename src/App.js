@@ -25,7 +25,7 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.book);
+    
 
     return (
       <div>
