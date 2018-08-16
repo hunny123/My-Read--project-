@@ -34,7 +34,7 @@ class App extends Component {
           exact
           path="/"
           render={() => (
-            <BookShelve book={this.state.book} onUpdate={this.updateBook} />
+            <BookShelve book={this.state.book} onUpdate={this.updateBook}/>
           )}
         />
         <Route

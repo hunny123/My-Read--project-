@@ -3,16 +3,30 @@ import PropTypes from "prop-types";
 
 class Bookcard extends Component {
   static propTypes = {
-    onUpdate: PropTypes.func.isRequired
+    onUpdate: PropTypes.func.isRequired,
+    data:PropTypes.array.isRequired
   };
+  
+ 
+   state = {
+    q:[]
+  }
+ 
 
+ Update = (book,shelf)=>{
+  this.props.onUpdate(book,shelf)
+  
+
+ }
   render() {
+    
     let k = ["currentlyReading", "read", "wantToRead","None"];
     k.splice(
       k.indexOf(
         this.props.data.map(book => {
-
+         
           return book.shelf;
+           
         })[0]
       ),
       1
@@ -46,26 +60,27 @@ class Bookcard extends Component {
                         className="btn btn-success drop-button dropdown-toggle  "
                         type="button"
                         data-toggle="dropdown"
+                        
                       >
-                        <span className="caret" />
+                        <span className="caret"onClick={()=>this.kill()} />
                       </a>
                       <ul className="dropdown-menu p-3">
                         <li>
                           <a className=" active">{book.shelf}</a>
                         </li>
                         <li>
-                          <a onClick={() => this.props.onUpdate(book, k[0])
+                          <a onClick={() => this.Update(book, k[0])
                                }>
                             {k[0]}
                           </a>
                         </li>
                         <li>
-                          <a onClick={() => this.props.onUpdate(book, k[1])}>
+                          <a onClick={() => this.Update(book, k[1])}>
                             {k[1]}
                           </a>
                         </li>
                         <li>
-                          <a onClick={() => this.props.onUpdate(book, k[2])}>
+                          <a onClick={() => this.Update(book, k[2])}>
                             {k[2]}
                           </a>
                         </li>
