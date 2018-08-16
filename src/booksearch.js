@@ -1,40 +1,92 @@
 import React,{ Component } from 'react'
 import Bookcard from './Bookcard'
+import * as BooksAPI from "./BooksAPI";
 
-import escapeRegExp from 'escape-string-regexp'
-
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
-import sortBy from 'sort-by'
+
+
 class Booksearch extends Component {
 	static propTypes = {
     data: PropTypes.array.isRequired,
     onUpdate: PropTypes.func.isRequired
   }
  state = {
-    query:''
-    
-  }
-  updateQuery = (query) => {
-    this.setState({ query: query.trim() })
+    query:'',
+    book:[]
+   
   }
   
-	
-	render(){
-		
-		let showingbooks
-        if (this.state.query) {
-         const match = new RegExp(escapeRegExp(this.state.query), 'i')
-      showingbooks = this.props.data.filter((book) => match.test(book.title))
-     
-      } else {
-      showingbooks = [];
+  
+  updateQuery = (query) => {
+   
+
+    let value =query
+    this.setState({query: value}) 
+    
+    this.search(value)
+    
+    
+  }
+  noneBook = (books) => {
+     let everyooks = this.props.data
+    
+    for (let book of books) {
+      book.shelf = "None"
     }
-     showingbooks.sort(sortBy('title'))
+
+    for (let book of books) {
+      for (let b of everyooks) {
+        if (b.id === book.id) {
+          book.shelf = b.shelf
+        }
+      }
+    }
+    return books
+  }
+  search= (value) => {
+
+    if (value.length !== 0) {
+      BooksAPI.search(value).then((books) => {
+        if (books.length > 0) {
+           books = books.filter((book) => (book.imageLinks))
+           books = this.noneBook(books)
+            this.setState({book:books})
+
+         
+        }
+      })
+    } else {
+      this.setState({book: [], query: ''})
+      this.render()
+    }
+  }
+    
+     
+      
+    
+    
+	
+  
+	render(){
+
+    
+
+
+	
+      
+    
+		
+
 		return(
           <div>
-          
+          <div className='search-book'>
+          <Link
+            to="/"
+            className="left"
+            >  </Link>
           <input
-            className='search-book'
+            className=''
             type='text'
             placeholder='Search contacts'
            value={this.state.query}
@@ -42,10 +94,13 @@ class Booksearch extends Component {
           
             
           />
-          
-          
+
+          </div>
+        
           <Bookcard data = {
-         	showingbooks
+           this.state.book
+          
+            
          }
          onUpdate = {this.props.onUpdate}
          />

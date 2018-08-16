@@ -20,6 +20,7 @@ class App extends Component {
     BooksAPI.update(book, shelf).then(book => {
       BooksAPI.getAll().then(book => {
         this.setState({ book });
+        
       });
     });
   };

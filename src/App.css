@@ -5,7 +5,15 @@
   color: white;
   font-weight: bold;
 }
+.left {
 
+  margin-top:20px;
+  padding:20px;
+  background-image: url("./icons/arrow-back.svg");
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position:left;
+}
 .heading2 {
   background: rgb(230, 230, 230);
   padding: 10px;
@@ -14,16 +22,23 @@
 }
 .search-book {
   width: 100%;
-  padding: 20px 20px 20px 60px;
-  background-image: url("./icons/search.svg");
-  background-repeat: no-repeat;
-  background-position: 20px center;
+  padding: 20px 20px 20px 20px;
+  
+  background-color: white;
   background-size: 1.2em;
   font-size: 1.2em;
-  border: 2px solid pink;
-  outline: none;
+ 
+  box-shadow: -4px 21px 89px -20px rgba(0,0,0,0.75);
 }
+.search-book input{
+  border:none;
+   margin-left: 5px;
+  width:80%;
 
+}
+.search-book input:focus{
+  outline:none;
+}
 .card {
   width: 250px;
   height: 400px;

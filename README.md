@@ -6,7 +6,7 @@ A bookshelf app that allows user to select and categorize books as you have read
 
 ## How to Run:
 
-1. [Download](https://github.com/hunny123/My-Read--project-.git) or [Clone](https://github.com/hunny123/My-Read--project-.git) the Repository.
+1. [Download](https://github.com/sagarchoudhary96/My-Reads/archive/master.zip) or [Clone](https://github.com/sagarchoudhary96/My-Reads.git) the Repository.
 2. Run `npm install` to install the project dependencies.
 3. Run the app using `npm start`.
 4. App can be seen at: `localhost:3000`. 

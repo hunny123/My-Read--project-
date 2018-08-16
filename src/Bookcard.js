@@ -7,20 +7,17 @@ class Bookcard extends Component {
   };
 
   render() {
-    let k = ["currentlyReading", "read", "wantToRead"];
+    let k = ["currentlyReading", "read", "wantToRead","None"];
     k.splice(
       k.indexOf(
         this.props.data.map(book => {
+
           return book.shelf;
         })[0]
       ),
       1
     );
-
-    /*let k=this.props.data.map((book)=>{return book.shelf});
-		document.getElementByclassName(k[0]).addClass("active");
-		*/
-
+   
     return (
       <div>
         <div className="container">
@@ -36,7 +33,7 @@ class Bookcard extends Component {
                   <div className="card-body">
                     <h5 className="card-title">{book.title}</h5>
                     <p className="card-text">Pages:{book.pageCount} </p>
-                    <h6 className="card-title">{book.authors[0]}</h6>
+                    <h6 className="card-title">{book.authors}</h6>
                     <a
                       href={book.previewLink}
                       target="blank"
@@ -54,10 +51,11 @@ class Bookcard extends Component {
                       </a>
                       <ul className="dropdown-menu p-3">
                         <li>
-                          <a className=" active ">{book.shelf}</a>
+                          <a className=" active">{book.shelf}</a>
                         </li>
                         <li>
-                          <a onClick={() => this.props.onUpdate(book, k[0])}>
+                          <a onClick={() => this.props.onUpdate(book, k[0])
+                               }>
                             {k[0]}
                           </a>
                         </li>
@@ -66,6 +64,12 @@ class Bookcard extends Component {
                             {k[1]}
                           </a>
                         </li>
+                        <li>
+                          <a onClick={() => this.props.onUpdate(book, k[2])}>
+                            {k[2]}
+                          </a>
+                        </li>
+                        
                       </ul>
                     </div>
                   </div>
