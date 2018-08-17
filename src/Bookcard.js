@@ -39,13 +39,17 @@ class Bookcard extends Component {
             {this.props.data.map(book => (
               <div className="col-md-3 mt-5 ml-3 mx-auto" key={book.id}>
                 <div className="card">
-                  <img
-                    className="card-img-top book-card"
+                <div className="book-card">
+                {(()=>{if(book.imageLinks){return <img
+                    className="card-img-top"
                     src={book.imageLinks.thumbnail}
                     alt="Cardcap"
                   />
+                    }  
+                      })()}
+                  </div>
                   <div className="card-body">
-                    <h5 className="card-title">{book.title}</h5>
+                    <h6 className="card-title">{book.title}</h6>
                     <p className="card-text">Pages:{book.pageCount} </p>
                     <h6 className="card-title">{book.authors}</h6>
                     <a
